@@ -1,0 +1,13 @@
+.menu{
+	}
+.menu1>div{
+	background-color: green;
+}
+.menu2{
+	display: none;
+	overflow: hidden;
+	background-color: silver;
+}
+.footer{
+	text-align: center;
+}
