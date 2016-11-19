@@ -140,7 +140,7 @@ public class MEMDAO {
 		return list;
 	}
 	
-	public JSONObject login(String id, String pass) throws Exception{
+	public JSONObject login(String id, String pass) throws Exception {
 		sql = "select * from MEM where MEM_ID = ? AND MEM_PW = ?";
 
 		jo = new JSONObject();
@@ -148,9 +148,7 @@ public class MEMDAO {
 		pstmt = conn.prepareStatement(sql);
 		pstmt.setString(1, id);
 		pstmt.setString(2, pass);
-		
 		rs = pstmt.executeQuery();
-		
 		if(rs.next()){
 			jo.put("mem_num", rs.getInt("mem_num")+"");
 			jo.put("ban_num", rs.getInt("ban_num")+"");
@@ -161,7 +159,6 @@ public class MEMDAO {
 			jo.put("mem_grade", rs.getInt("mem_grade")+"");
 			jo.put("mem_ph", rs.getString("mem_ph"));
 		}
-		
 		if(rs != null){rs.close();}
 		if(pstmt != null){pstmt.close();}
 		if(conn != null){conn.close();}

@@ -9,18 +9,20 @@
 <body>
 		<div class = "message">
 			<div>
-				<div class = "corso">
-					<div>아이디</div>
-					<div>패스워드</div>
+				<div id="idPassLogin" class = "corso">
+				    <table>
+				        <tr>
+							<td>아 이 디</td><td><input type = "text" class = "id"></td>
+						</tr>
+						<tr>
+							<td>패스워드</td><td><input type = "password" class = "pass"></td>
+						</tr>
+						<tr>
+							<td colspan="2"><input class = "login1" type = "button" value = "로그인"></td>
+						</tr>
+					</table>
 				</div>
-				<div class = "corso">
-					<div><input type = "text" class = "id"></div>
-					<div><input type = "password" class = "pass"></div>
-				</div>
-				<div class = "corso">
-					<div><input class = "login1" type = "button" value = "로그인"></div>
-				</div>
-				</div>
+			</div>
 			<div>
 				<div class = "corso"><a href = "\project2/content/membership.jsp">회원가입</a></div>
 				<div class = "corso"><a href = "javascript:idpopup();">아이디찾기</a></div>

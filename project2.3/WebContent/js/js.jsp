@@ -134,6 +134,9 @@
 					data: data,
 					datatype: "JSON",
 					success: function(msg){
+						var loginDiv = $("#idPassLogin");
+						loginDiv.empty();
+						loginDiv.html(msg.mem_id + "("+ msg.mem_name +")님 로그인");
 						
 					},
 					error: function(ms){
