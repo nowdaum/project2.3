@@ -124,7 +124,7 @@
 	    	});
 	    	
 		<%if(session.getAttribute("login").equals("0")){%>
-			$('.login1').click(function(){
+			$(document).on('click', '#login1', function(){
 				var action = "\\project2/LOGIN.do";
 				var data = "id=" + $('.id').val() + "&pass=" + $('.pass').val();
 				
@@ -134,10 +134,7 @@
 					data: data,
 					datatype: "JSON",
 					success: function(msg){
-						var loginDiv = $("#idPassLogin");
-						loginDiv.empty();
-						loginDiv.html(msg.mem_id + "("+ msg.mem_name +")님 로그인");
-						
+						loginSuccess(msg);
 					},
 					error: function(ms){
 						$(".ms").html("아이디 혹은 비밀번호가 틀리셨습니다.");
@@ -169,6 +166,44 @@
 					+ "<br><a href=\"\\project2/ALLMEM.do\">회원 확인</a>");
 			<%}
 		}%>
+		
+		function loginSuccess(loginUserInfo) {
+			var sHtml = '';
+			//alert(loginUserInfo.login_name + ", login_grade:"+ loginUserInfo.login_grade);
+			switch(loginUserInfo.mem_grade) {
+			case "1" :
+				sHtml += loginUserInfo.mem_name +" "+ '<a href="/project2/LOGOUT.do" method="post">로그 아웃</a>';
+				sHtml += '<br><a href="/project2/ONEEDIT.do?idx=' + loginUserInfo.mem_num + '">회원 정보 수정</a>';
+				sHtml += '<br><a href="#">성적 확인</a>';
+				sHtml += '<br><a href="#">출석 확인</a>';
+				break;
+			case "2" :
+				sHtml += loginUserInfo.mem_name +" "+ '<a href="/project2/LOGOUT.do" method="post">로그 아웃</a>';
+				sHtml += '<br><a href="/project2/ONEEDIT.do?idx=' + loginUserInfo.mem_num + '">회원 정보 수정</a>';
+				sHtml += '<br><a href="#">신청 확인</a>';
+				break;
+			case "3" :
+				sHtml += loginUserInfo.mem_name +" "+ '<a href="/project2/LOGOUT.do" method="post">로그 아웃</a>';
+				sHtml += '<br><a href="/project2/ONEEDIT.do?idx=' + loginUserInfo.mem_num + '">회원 정보 수정</a>';
+				sHtml += '<br><a href="#">반 생성</a>';
+				sHtml += '<br><a href="#">출석 확인</a>';
+				break;
+			case "4" :
+				sHtml += loginUserInfo.mem_name +" "+ '<a href="/project2/LOGOUT.do" method="post">로그 아웃</a>';
+				sHtml += '<br><a href="/project2/ONEEDIT.do?idx=' + loginUserInfo.mem_num + '">회원 정보 수정</a>';
+				sHtml += '<br><a href="#">성적 등록</a>';
+				break;
+			case "5" :
+				sHtml += loginUserInfo.login_name +" "+ '<a href="/project2/LOGOUT.do" method="post">로그 아웃</a>';
+				sHtml += '<br><a href="/project2/ONEEDIT.do?idx=' + loginUserInfo.login_mnum + '">회원 정보 수정</a>';
+				sHtml += '<br><a href="/project2/ALLMEM.do">회원 확인</a>';
+				break;
+			default :
+				break;
+			}
+			$(".message").empty();
+			$(".message").html(sHtml);
+		}
 		
 		function idpopup(){
 			window.open("./idfind.jsp", "아이디찾기" , "width = 300, height = 80, resizeble = no");
